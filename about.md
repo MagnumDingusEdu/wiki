@@ -2,7 +2,7 @@
 title: CV
 description: About me
 published: true
-date: 2021-01-08T00:46:13.879Z
+date: 2021-01-08T00:46:52.582Z
 tags: about, resume, cv, info, curriculum vitae
 editor: markdown
 dateCreated: 2021-01-08T00:46:13.879Z
@@ -15,18 +15,18 @@ My interests include backend dev, penetration testing, and creating / self-hosti
 
 Most of my hobby projects can be found on [Github](https://github.com/MagnumDingusEdu/).
 
-_Work experience_:
+__Work experience__:
 
 - February 2020 - July 2020
 	- Lead software developer for [IQ Institute](https://iqinstitute.org) Chandigarh. My role consisted of making a website, admin portal,  and an accompanying android app for remote lecture viewing by students. 
   
-_Education_:
+__Education__:
 
 - [St Kabir Public School](https://stkabir.co.in/) - Secondary school Graduate (CBSE)
 - [Bhavan Vidyala Chd](https://www.bhavanchd.com/) - High School Graduate (CBSE)
 - [Thapar University Patiala](https://thapar.edu) - Sophomore, BE Computer Science and Engineering (Present)
 
-_Technical Background_:
+__Technical Background__:
 
 - Programming languages : Python, Golang, Dart, C/C++, Rust, Javascript
 - Operating Systems: Linux - Ubuntu, Fedora, Arch, Gentoo
@@ -37,7 +37,7 @@ _Technical Background_:
 - Databases: PostgreSQL, Sqlite
 - Automation: Ansible
 
-_Other_:
+__Other__:
 
 - Languages: English, Hindi, Punjabi
 - Citizenship: India
