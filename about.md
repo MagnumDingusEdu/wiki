@@ -2,7 +2,7 @@
 title: CV
 description: About me
 published: true
-date: 2021-01-08T00:46:52.582Z
+date: 2021-01-08T01:20:32.294Z
 tags: about, resume, cv, info, curriculum vitae
 editor: markdown
 dateCreated: 2021-01-08T00:46:13.879Z
@@ -18,7 +18,8 @@ Most of my hobby projects can be found on [Github](https://github.com/MagnumDing
 __Work experience__:
 
 - February 2020 - July 2020
-	- Lead software developer for [IQ Institute](https://iqinstitute.org) Chandigarh. My role consisted of making a website, admin portal,  and an accompanying android app for remote lecture viewing by students. 
+	- Lead software developer for [IQ Institute](https://iqinstitute.org) Chandigarh. My role consisted of 
+making a website, admin portal,  and an accompanying android app for remote lecture viewing by students. 
   
 __Education__:
 
