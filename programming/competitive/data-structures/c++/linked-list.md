@@ -2,7 +2,7 @@
 title: Generic Linked List implementation in C++
 description: 
 published: true
-date: 2021-01-09T04:01:54.713Z
+date: 2021-01-09T04:02:53.898Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-09T04:01:54.713Z
