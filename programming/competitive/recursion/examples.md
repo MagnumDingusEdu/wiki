@@ -2,7 +2,7 @@
 title: Recursion Examples
 description: 
 published: true
-date: 2021-01-10T11:41:56.009Z
+date: 2021-01-10T12:01:58.529Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-10T11:23:55.425Z
@@ -99,5 +99,27 @@ void reverseArray(int *arr, int i, int j) {
         arr[j] = temp;
         reverseArray(arr, i + 1, j - 1);
     }
+}
+```
+
+# Fibonacci (Linear Recursion)
+
+```cpp
+pair<int, int> recursive_fibonacci(int k) {
+    if (k <= 1) return make_pair(k, 0);
+    pair<int, int> temp = recursive_fibonacci(k - 1);
+    return make_pair(temp.first + temp.second, temp.first);
+}
+
+int fibonacci(int k) {
+    return recursive_fibonacci(k).first;
+}
+```
+
+# Fibonacci (Binary Recursion)
+```cpp
+int fibonacci(int k) {
+    if (k <= 1) return k;
+    return fibonacci(k - 1) + fibonacci(k - 2);
 }
 ```
