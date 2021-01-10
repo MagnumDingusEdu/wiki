@@ -2,7 +2,7 @@
 title: Recursion Examples
 description: 
 published: true
-date: 2021-01-10T11:33:34.621Z
+date: 2021-01-10T11:41:56.009Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-10T11:23:55.425Z
@@ -84,5 +84,20 @@ int arraySum(int *arr, int n) {
     if (n == 0) return 0;
     if (n == 1) return arr[0];
     return arr[n - 1] + arraySum(arr, n - 1);
+}
+```
+
+# Reverse an array
+```cpp
+// reverse all the elements in A starting at index i and ending at j
+void reverseArray(int *arr, int i, int j) {
+    if (i == j) return; // odd number of elements
+    if (i > j) return; // even number of elements
+    if (i < j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        reverseArray(arr, i + 1, j - 1);
+    }
 }
 ```
