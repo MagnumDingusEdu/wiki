@@ -2,7 +2,7 @@
 title: Recursion Examples
 description: 
 published: true
-date: 2021-01-10T11:23:55.425Z
+date: 2021-01-10T11:33:34.621Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-10T11:23:55.425Z
@@ -74,4 +74,15 @@ Output :
 --
 -
 --- 5
+```
+
+# Sum of Array
+
+```cpp
+// return the sum of the first n elements of arr
+int arraySum(int *arr, int n) {
+    if (n == 0) return 0;
+    if (n == 1) return arr[0];
+    return arr[n - 1] + arraySum(arr, n - 1);
+}
 ```
