@@ -1,0 +1,77 @@
+---
+title: Recursion Examples
+description: 
+published: true
+date: 2021-01-10T11:23:55.425Z
+tags: 
+editor: markdown
+dateCreated: 2021-01-10T11:23:55.425Z
+---
+
+# Drawing a Ruler
+
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// helper function to draw one tick
+void drawOneTick(unsigned int length, int value = -1) {
+    stringstream ss;
+    for (int i = 0; i < length; ++i) ss << "-";
+    if (value >= 0)
+        ss << " " << value;
+    cout << ss.str() << endl;
+}
+
+// draws the ticks in between a given interval
+void drawTicksRecursive(unsigned int tickLength) {
+    if (tickLength > 0) {
+        drawTicksRecursive(tickLength - 1);
+        drawOneTick(tickLength);
+        drawTicksRecursive(tickLength - 1);
+    }
+}
+
+// draws the entire ruler
+void drawRuler(unsigned int nInches, unsigned int majorLength) {
+    drawOneTick(majorLength, 0);
+    for (int i = 1; i <= nInches; ++i) {
+        drawTicksRecursive(majorLength - 1);
+        drawOneTick(majorLength, i);
+
+    }
+}
+
+
+int main() {
+    drawRuler(5, 3);
+}
+```
+
+Output :
+
+```cpp
+--- 0
+-
+--
+-
+--- 1
+-
+--
+-
+--- 2
+-
+--
+-
+--- 3
+-
+--
+-
+--- 4
+-
+--
+-
+--- 5
+```
