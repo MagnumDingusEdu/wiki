@@ -2,7 +2,7 @@
 title: Singly Linked List
 description: 
 published: true
-date: 2021-01-09T04:30:38.384Z
+date: 2021-01-12T22:29:46.878Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-09T04:01:54.713Z
@@ -47,6 +47,12 @@ public:
     [[nodiscard]] bool isEmpty() const { return this->head == nullptr; }
 
     void removeFront() {
+        if(this->isEmpty()) return;
+
+        if (this->head->next == nullptr) {
+            this->head = nullptr;
+            return;
+        }
         SNode<E> *temp = this->head->next;
         delete this->head;
         this->head = temp;
@@ -56,11 +62,18 @@ public:
 
     void addFront(const E &data) {
         auto *newNode = new SNode<E>(data);
+
+        if (this->isEmpty()) {
+            this->head = newNode;
+            this->head->next = nullptr;
+            return;
+        }
+
         newNode->next = this->head;
         this->head = newNode;
     }
 
-    friend ostream &operator<<(ostream &os, const SinglyLinkedList &linkedList) {
+    friend std::ostream &operator<<(std::ostream &os, const SinglyLinkedList &linkedList) {
         if (linkedList.isEmpty()) {
             return os;
         }
@@ -79,6 +92,7 @@ public:
 
 
 };
+
 
 int main() {
     SinglyLinkedList<string> sll;
