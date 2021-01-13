@@ -2,7 +2,7 @@
 title: Stack
 description: 
 published: true
-date: 2021-01-13T06:32:44.165Z
+date: 2021-01-13T06:57:50.529Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-12T21:47:15.688Z
@@ -12,7 +12,7 @@ dateCreated: 2021-01-12T21:47:15.688Z
 
 Stack is implemented here in two different ways, one using fixed-size arrays, and the other using a linked list. We can also use the STL Vector class instead of arrays, for an unbounded array-based stack.
 
-## Array Based
+## Fixed Array Based
 ```cpp
 #include <bits/stdc++.h>
 #include <ostream>
@@ -92,6 +92,114 @@ int main() {
     cout << test;
 }
 ```
+
+## Dynamic Array Based
+
+```cpp
+#include <bits/stdc++.h>
+#include <ostream>
+
+using namespace std;
+
+template<typename E>
+class StackExpandingArray {
+private:
+    E *data;
+    long int capacity{};
+    long int nextIndex{};
+
+    enum {
+        DEFAULT_CAPACITY = 10
+    };
+
+
+    void doubleCapacity() {
+        auto newData = new E[capacity * 2];
+        for (int i = 0; i < nextIndex; ++i) {
+            newData[i] = this->data[i];
+        }
+        delete[] this->data;
+        this->data = newData;
+        this->capacity = 2 * this->capacity;
+
+        cout << "Capacity doubled." << endl;
+    }
+
+
+public:
+    explicit StackExpandingArray(long int initialCapacity = DEFAULT_CAPACITY) {
+        this->data = new E[initialCapacity];
+        this->capacity = initialCapacity;
+        this->nextIndex = 0;
+    }
+
+    [[nodiscard]] bool isEmpty() const {
+        return this->nextIndex == 0;
+    }
+
+    [[nodiscard]] long int size() const {
+        return this->nextIndex;
+    }
+
+    void push(const E &e) {
+        if (nextIndex == capacity) doubleCapacity();
+
+        this->data[nextIndex] = e;
+        nextIndex++;
+    }
+
+    long int pop() {
+        nextIndex--;
+        return this->data[nextIndex];
+    }
+
+    [[nodiscard]] E &top() const {
+        return this->data[nextIndex - 1];
+    }
+
+    // output section
+
+    friend ostream &operator<<(ostream &os, StackExpandingArray &expandingArray) {
+        os << expandingArray.str();
+        return os;
+    }
+
+    string str() {
+        stringstream ss;
+        auto temp = StackExpandingArray<E>(this->capacity);
+        while (!isEmpty()) {
+            ss << this->top() << " ";
+            temp.push(this->pop());
+        }
+        while (!temp.isEmpty()) this->push(temp.pop());
+        return ss.str();
+    }
+
+    vector<E> vec() {
+        vector<E> vv;
+        auto temp = StackExpandingArray<E>(this->capacity);
+        while (!isEmpty()) {
+            vv.push_back(this->top());
+            temp.push(this->pop());
+        }
+        while (!temp.isEmpty()) this->push(temp.pop());
+        return vv;
+    }
+
+};
+
+int main() {
+    StackExpandingArray<int> test;
+    for (int i = 0; i < 100; ++i) test.push(i);
+
+    auto ll = test.vec();
+
+    for (int i : ll) cout << i << " ";
+
+    return 0;
+}
+```
+
 
 ## Linked List Based
 
