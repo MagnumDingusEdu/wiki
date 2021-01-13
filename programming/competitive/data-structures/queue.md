@@ -2,7 +2,7 @@
 title: Queue
 description: 
 published: true
-date: 2021-01-13T08:47:17.342Z
+date: 2021-01-13T08:51:45.237Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-13T08:08:35.045Z
@@ -394,6 +394,146 @@ public:
 
 int main() {
     QueueWithSLL<int> qq;
+    for (int i = 0; i < 100; ++i) {
+        qq.enqueue(i + 1);
+        if(i % 6 == 0) qq.dequeue();
+    }
+    cout << qq  << endl;
+
+}
+```
+
+## CLL based
+```cpp
+#include <bits/stdc++.h>
+#include <ostream>
+
+using namespace std;
+
+template<typename E>
+class CNode {
+public:
+    E data;
+    CNode<E> *next{};
+
+    CNode() = default;
+
+    explicit CNode(const E &data, CNode<E> *n = nullptr) {
+        this->data = data;
+        this->next = n;
+    }
+};
+
+template<typename E>
+class CircularLinkedList {
+private:
+    CNode<E> *cursor;
+public:
+
+    CircularLinkedList() : cursor(nullptr) {}
+
+    ~CircularLinkedList() { while (!isEmpty()) remove(); }
+
+    [[nodiscard]] bool isEmpty() const {
+        return this->cursor == nullptr;
+    }
+
+    [[nodiscard]] const E &back() const {
+        return this->cursor->data;
+    }
+
+    [[nodiscard]] const E &front() const {
+        return this->cursor->next->data;
+    }
+
+    void advance() {
+        this->cursor = this->cursor->next;
+    }
+
+    void add(const E &data) {
+        auto *newNode = new CNode<E>(data);
+        if (isEmpty()) {
+            newNode->next = newNode;
+            this->cursor = newNode;
+        } else {
+            newNode->next = this->cursor->next;
+            this->cursor->next = newNode;
+        }
+    }
+
+    void remove() {
+        if (isEmpty()) {
+            return;
+        }
+        CNode<E> *old = this->cursor->next;
+        if (old == this->cursor)
+            this->cursor = nullptr;
+        else
+            this->cursor->next = old->next;
+
+        delete old;
+    }
+
+    friend std::ostream &operator<<(std::ostream &os, const CircularLinkedList &circleList) {
+        CNode<E> *temp = circleList.cursor->next;
+        if (circleList.isEmpty()) {
+            os << "";
+            return os;
+        }
+        while (true) {
+            os << temp->data << " ";
+            if (temp->next != circleList.cursor->next)
+                temp = temp->next;
+            else
+                break;
+        }
+        return os;
+    }
+
+};
+
+
+template<typename E>
+class QueueWithCLL {
+    CircularLinkedList<E> data;
+    long int currentSize{};
+
+public:
+    QueueWithCLL() {
+        this->data = CircularLinkedList<E>();
+        this->currentSize = 0;
+
+    }
+
+    [[nodiscard]] bool isEmpty() const { return this->data.isEmpty(); }
+
+    [[nodiscard]] E &front() const { return this->data.front(); }
+
+    [[nodiscard]] long int size() const { return this->currentSize; }
+
+    void enqueue(const E &e) {
+        this->data.add(e);
+        this->data.advance();
+        this->currentSize++;
+    }
+
+    E dequeue() {
+        E val = this->data.front();
+        this->data.remove();
+        this->currentSize--;
+        return val;
+    }
+
+    friend ostream &operator<<(ostream &os, const QueueWithCLL &sll) {
+        os << sll.data;
+        return os;
+    }
+
+
+};
+
+int main() {
+    QueueWithCLL<int> qq;
     for (int i = 0; i < 100; ++i) {
         qq.enqueue(i + 1);
         if(i % 6 == 0) qq.dequeue();
