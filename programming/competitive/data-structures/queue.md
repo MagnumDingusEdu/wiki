@@ -2,7 +2,7 @@
 title: Queue
 description: 
 published: true
-date: 2021-01-13T08:28:41.724Z
+date: 2021-01-13T08:47:17.342Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-13T08:08:35.045Z
@@ -246,6 +246,159 @@ int main() {
         qq.enqueue(i + 1);
     }
     cout << qq << "|" << qq.cap() << endl;
+
+}
+```
+
+## SLL Based
+```cpp
+#include <bits/stdc++.h>
+#include <ostream>
+
+using namespace std;
+
+
+template<typename E>
+class SNode {
+public:
+    E data;
+    SNode<E> *next;
+
+    explicit SNode(const E &data, SNode<E> *n = nullptr) {
+        this->data = data;
+        this->next = n;
+    }
+};
+
+template<typename E>
+class SinglyLinkedList {
+private:
+    SNode<E> *head;
+    SNode<E> *tail;
+
+public:
+    SinglyLinkedList() {
+        this->head = nullptr;
+        this->tail = nullptr;
+    };
+
+    ~SinglyLinkedList() {
+        while (!isEmpty())
+            removeFront();
+    };
+
+    [[nodiscard]] bool isEmpty() const { return this->head == nullptr; }
+
+    void removeFront() {
+        if (this->isEmpty()) return;
+
+        if (this->head->next == nullptr) {
+            this->head = nullptr;
+            this->tail = nullptr;
+            return;
+        }
+        SNode<E> *temp = this->head->next;
+        delete this->head;
+        this->head = temp;
+    }
+
+    [[nodiscard]] const E &front() const { return this->head->data; }
+
+    void addFront(const E &data) {
+        auto *newNode = new SNode<E>(data);
+
+        if (this->isEmpty()) {
+            this->head = newNode;
+            this->tail = newNode;
+            this->head->next = nullptr;
+
+            return;
+        }
+
+        newNode->next = this->head;
+        this->head = newNode;
+    }
+
+    void pushBack(const E &data) {
+        auto *newNode = new SNode<E>(data);
+        if (this->isEmpty()) {
+            this->head = newNode;
+            this->tail = newNode;
+            this->head->next = nullptr;
+
+            return;
+        }
+        this->tail->next = newNode;
+        this->tail = newNode;
+
+    }
+
+    friend std::ostream &operator<<(std::ostream &os, const SinglyLinkedList &linkedList) {
+        if (linkedList.isEmpty()) {
+            return os;
+        }
+        auto temp = linkedList.head;
+
+        while (true) {
+            os << temp->data << " ";
+            if (temp->next != nullptr)
+                temp = temp->next;
+            else
+                break;
+        }
+
+        return os;
+    }
+
+
+};
+
+
+template<typename E>
+class QueueWithSLL {
+    SinglyLinkedList<E> data;
+    long int currentSize{};
+
+public:
+    QueueWithSLL() {
+        this->data = SinglyLinkedList<E>();
+        this->currentSize = 0;
+
+    }
+
+    [[nodiscard]] bool isEmpty() const { return this->data.isEmpty(); }
+
+    [[nodiscard]] E &front() const { return this->data.front(); }
+
+    [[nodiscard]] long int size() const { return this->currentSize; }
+
+    void enqueue(const E &e) {
+        this->data.pushBack(e);
+        this->currentSize++;
+    }
+
+    E dequeue() {
+        E val = this->data.front();
+        this->data.removeFront();
+        this->currentSize--;
+        return val;
+    }
+
+    friend ostream &operator<<(ostream &os, const QueueWithSLL &sll) {
+        os << sll.data;
+        return os;
+    }
+
+
+};
+
+int main() {
+    QueueWithSLL<int> qq;
+    for (int i = 0; i < 100; ++i) {
+        qq.enqueue(i + 1);
+        if(i % 6 == 0) qq.dequeue();
+    }
+    cout << qq  << endl;
 
 }
 ```
