@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T10:00:16.880Z
+date: 2021-01-22T10:13:11.326Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -765,7 +765,7 @@ if __name__ == '__main__':
 
     print(array)
 ```
-# Quick Sort
+## Quick Sort
 ```python
 from typing import List, Any
 
@@ -874,6 +874,54 @@ def merge_sort(arr: List[Any], first: int, last: int) -> None:
 if __name__ == '__main__':
     array: List[int] = [18, 15, 5, 1, 20, 25, 20, 5, 1, 18, 12, 13, 22, 3, 30, 19, 18, 13, 20, 22]
     merge_sort(array, 0, len(array) - 1)
+
+    print(array)
+```
+## Counting Sort
+```python
+from typing import List, Any
+
+
+def counting_sort(arr: List[Any]) -> None:
+    size: int = len(arr)
+    if size <= 0:
+        return
+
+    # Find the max value
+    maximum: Any = arr[0]
+    for i in arr:
+        if i > maximum:
+            maximum = i
+
+    max_range = maximum + 1
+
+    # Allocate a frequency map array
+    frequencies: List[int] = [0 for _ in range(max_range)]
+
+    # Fill in frequencies
+    for i in arr:
+        frequencies[i] += 1
+
+    # Cumulate the results
+    for i in range(1, len(frequencies)):
+        frequencies[i] += frequencies[i - 1]
+
+    # Make a new array to store sorted entries
+    sorted_array: List[Any] = [0 for _ in arr]
+
+    # Iterate over the old array and fill in the sorted array
+    for i in reversed(arr):
+        sorted_array[frequencies[i] - 1] = i
+        frequencies[i] -= 1
+
+    # Copy the sorted array back to the original array
+    for i in range(len(arr)):
+        arr[i] = sorted_array[i]
+
+
+if __name__ == '__main__':
+    array: List[int] = [18, 15, 5, 1, 20, 25, 20, 5, 1, 18, 12, 13, 22, 3, 30, 19, 18, 13, 20, 22]
+    counting_sort(array)
 
     print(array)
 ```
