@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T07:34:10.241Z
+date: 2021-01-22T07:43:56.446Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -682,4 +682,44 @@ if __name__ == '__main__':
 
     print(array)
 
+```
+## Insertion Sort
+```python
+from typing import List, Any
+
+
+def insertion_sort(arr: List[Any]):
+    # Get the size of the array
+    size: int = len(arr)
+
+    iteration_count: int = 0
+
+    # Loop through the array, ruling out the first value
+    for i in range(1, size):
+        # save the current value
+        current = arr[i]
+
+        # save the final value after shifting
+        value: int = -1
+
+        # shift all elements larger than current to the right
+        for k in reversed(range(i)):
+            if arr[k] > current:
+                arr[k + 1] = arr[k]
+                value = k
+
+        # save the current variable at the correct position
+        arr[value] = current
+
+        # Increase the iteration count
+        iteration_count += 1
+
+    print(f"{iteration_count} iterations")
+
+
+if __name__ == '__main__':
+    array: List[int] = [3, 20, 15, 12, 6, 9, 22, 13, 25, 26, 13, 13, 17, 16, 18, 7, 20, 10, 26, 28]
+    insertion_sort(array)
+
+    print(array)
 ```
