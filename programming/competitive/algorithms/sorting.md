@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T02:40:29.017Z
+date: 2021-01-22T04:00:58.944Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -195,5 +195,85 @@ int main() {
     int size = sizeof(arr) / sizeof(int);
     insertionSort(arr, size);
     display(arr, size);
+}
+```
+
+## Shell Sort
+```cpp
+#include <bits/stdc++.h>
+
+#define DEBUG
+using namespace std;
+
+template<typename E>
+void display(E arr[], int size) {
+    stringstream ss;
+    ss << "[ ";
+    for (int i = 0; i < size; ++i) {
+        ss << arr[i] << " ";
+    }
+    ss << "]";
+    cout << ss.str() << endl;
+}
+
+// calculate the appropriate gap using the Hibbard algorithm
+// ref : https://en.wikipedia.org/wiki/Shellsort#Gap_sequences
+int hValue(int size) {
+    int k = 0;
+    int current = 0;
+
+    // formula for sequence : 2^k - 1
+    // calculate largest number in sequence less than array size
+    while (true) {
+        if ((2 << k) - 1 < size) {
+            current = (2 << k) - 1;
+            k++;
+        } else {
+            break;
+        }
+    }
+    return current;
+}
+
+// compare two values, and return true if swapped
+template<typename E>
+bool compare_and_swap(E *first, E *second) {
+    // do not swap if already in ascending
+    if (*first < *second) return false;
+
+    // else swap
+    E temp = *second;
+    *second = *first;
+    *first = temp;
+    return true;
+}
+
+
+template<typename E>
+void shellSort(E *arr, int size) {
+    // iterate over all elements, divide gap by 2 with each pass
+    // initial value of gap : floor(size/2)
+    for (int gap = size / 2; gap > 0; gap /= 2) {
+
+        // iterate through subarray, at positions separated by gaps
+        // start at 0 + gap size
+        for (int j = gap; j < size; ++j) {
+            int current = j;
+
+            while (current >= gap)
+                if (compare_and_swap(&arr[current - gap],
+                                     &arr[current])) {
+                    current -= gap;
+                } else break;
+        }
+    }
+}
+
+int main() {
+    int arr[] = {4, 13, 30, 12, 17, 26, 5, 2, 13, 16, 19, 19, 25, 11, 9, 6, 3, 11, 15, 26};
+    int size = sizeof(arr) / sizeof(int);
+    shellSort(arr, size);
+    display(arr, size);
+
 }
 ```
