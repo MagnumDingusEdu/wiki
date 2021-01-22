@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T09:19:41.651Z
+date: 2021-01-22T09:59:22.908Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -816,6 +816,64 @@ def quick_sort(arr: List[Any], first: int, last: int) -> None:
 if __name__ == '__main__':
     array: List[int] = [18, 15, 5, 1, 20, 25, 20, 5, 1, 18, 12, 13, 22, 3, 30, 19, 18, 13, 20, 22]
     quick_sort(array, 0, len(array) - 1)
+
+    print(array)
+```
+## Merge Sort
+```python
+from typing import List, Any
+
+
+def merge(arr: List[Any], first: int, mid: int, last: int) -> None:
+    left_arr = []
+    right_arr = []
+
+    for i in range(first, mid + 1):
+        left_arr.append(arr[i])
+    for i in range(mid + 1, last + 1):
+        right_arr.append(arr[i])
+
+    left_size = len(left_arr)
+    right_size = len(right_arr)
+
+    left_iterator = 0
+    right_iterator = 0
+    sorted_iterator = first
+
+    while left_iterator < left_size and right_iterator < right_size:
+        if left_arr[left_iterator] < right_arr[right_iterator]:
+            arr[sorted_iterator] = left_arr[left_iterator]
+            left_iterator += 1
+        else:
+            arr[sorted_iterator] = right_arr[right_iterator]
+            right_iterator += 1
+        sorted_iterator += 1
+
+    while left_iterator < left_size:
+        arr[sorted_iterator] = left_arr[left_iterator]
+        sorted_iterator += 1
+        left_iterator += 1
+    while right_iterator < right_size:
+        arr[sorted_iterator] = right_arr[right_iterator]
+        right_iterator += 1
+        sorted_iterator += 1
+
+
+def merge_sort(arr: List[Any], first: int, last: int) -> None:
+    if first >= last:
+        return
+
+    middle: int = first + int((last - first) / 2)
+
+    merge_sort(arr, first, middle)
+    merge_sort(arr, middle + 1, last)
+
+    merge(arr, first, middle, last)
+
+
+if __name__ == '__main__':
+    array: List[int] = [18, 15, 5, 1, 20, 25, 20, 5, 1, 18, 12, 13, 22, 3, 30, 19, 18, 13, 20, 22]
+    merge_sort(array, 0, len(array) - 1)
 
     print(array)
 ```
