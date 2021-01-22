@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T08:38:41.518Z
+date: 2021-01-22T09:19:41.651Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -762,6 +762,60 @@ def shell_sort(arr: List[Any]):
 if __name__ == '__main__':
     array: List[int] = [3, 20, 15, 12, 6, 9, 22, 13, 25, 26, 13, 13, 17, 16, 18, 7, 20, 10, 26, 28]
     shell_sort(array)
+
+    print(array)
+```
+# Quick Sort
+```python
+from typing import List, Any
+
+
+def partition(arr: List[Any], first: int, last: int) -> int:
+    pivot: int = first + int((last - first) / 2)
+
+    # move pivot to the last to avoid interference
+    arr[last], arr[pivot] = arr[pivot], arr[last]
+
+    # Initialize start and end pointers
+    start: int = first
+    end: int = last - 1
+
+    while True:
+        # Advance pointers to the point where there are conflicting values
+        while arr[start] < arr[last]:
+            start += 1
+        while arr[end] > arr[last]:
+            end -= 1
+
+        # Get out of infinite loop in edge case
+        if arr[start] == arr[end]:
+            start += 1
+
+        # Break loop if complete
+        if start >= end:
+            break
+
+        # Swap conflicting values
+        arr[start], arr[end] = arr[end], arr[start]
+
+    # bring back pivot to correct position
+    arr[start], arr[last] = arr[last], arr[start]
+    return start
+
+
+def quick_sort(arr: List[Any], first: int, last: int) -> None:
+    if first >= last:
+        return
+
+    pivot: int = partition(arr, first, last)
+
+    quick_sort(arr, first, pivot - 1)
+    quick_sort(arr, pivot + 1, last)
+
+
+if __name__ == '__main__':
+    array: List[int] = [18, 15, 5, 1, 20, 25, 20, 5, 1, 18, 12, 13, 22, 3, 30, 19, 18, 13, 20, 22]
+    quick_sort(array, 0, len(array) - 1)
 
     print(array)
 ```
