@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T09:59:22.908Z
+date: 2021-01-22T10:00:16.880Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
