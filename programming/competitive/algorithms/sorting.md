@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T06:37:25.104Z
+date: 2021-01-22T06:38:49.660Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -409,6 +409,10 @@ void merge(E *arr, int start, int middle, int end) {
     // fill in remaining elements at the end
     while (lIndex < sizeLeft) arr[mainIndex++] = arrLeft[lIndex++];
     while (rIndex < sizeRight) arr[mainIndex++] = arrRight[rIndex++];
+    
+    // deallocate the arrays
+    delete[] arrLeft;
+    delete[] arrRight;
 }
 
 template<typename E>
