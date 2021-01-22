@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T06:38:49.660Z
+date: 2021-01-22T07:03:13.207Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -512,6 +512,98 @@ int main() {
     int arr[] = {3, 20, 15, 12, 6, 9, 22, 13, 25, 26, 13, 13, 17, 16, 18, 7, 20, 10, 26, 28};
     int size = sizeof(arr) / sizeof(int);
     countingSort(arr, size);
+    display(arr, size);
+
+}
+```
+
+## Radix Sort
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+template<typename E>
+void display(E arr[], int size) {
+    stringstream ss;
+    ss << "[ ";
+    for (int i = 0; i < size; ++i) {
+        ss << arr[i] << " ";
+    }
+    ss << "]";
+    cout << ss.str() << endl;
+}
+
+
+// special case of counting sort while specifying the place to use as key
+// any other stable sort can be used in it's place
+template<typename E>
+void countingSortExp(E *arr, int size, int place_exp) {
+    // edge case
+    if (size <= 0) return;
+
+    // find the max element
+    E max = (arr[0] / place_exp) % 10;
+
+    for (int i = 0; i < size; ++i) {
+        E current = (arr[i] / place_exp) % 10;
+        if (current > max) max = current;
+    }
+
+    // calculate the range of values
+    int range = max + 1;
+
+    // allocate a frequency  array and initialize all entries to zero
+    auto frequency = new unsigned int[range]();
+
+    // loop through the original array and fill in the frequency values
+    for (int i = 0; i < size; ++i)
+        frequency[(arr[i] / place_exp) % 10]++;
+
+    // accumulate the counts
+    for (int i = 1; i < range; ++i)
+        frequency[i] += frequency[i - 1];
+
+
+    // allocate a temporary array for storing the sorted values
+    auto sorted = new E[size];
+
+    // fill the sorted array in reverse order
+    // based on the frequency values
+    for (int i = size - 1; i >= 0; --i)
+        sorted[--frequency[((arr[i] / place_exp) % 10)]] = arr[i];
+
+
+    // copy the values over to the original array
+    for (int i = 0; i < size; ++i)
+        arr[i] = sorted[i];
+
+    // de-allocate the arrays
+    delete[] frequency;
+    delete[] sorted;
+}
+
+template<typename E>
+void radixSort(E *arr, int size) {
+    // edge case
+    if (size == 0) return;
+
+    // find the max element
+    int max = arr[0];
+    for (int i = 0; i < size; ++i)
+        if (arr[i] > max) max = arr[i];
+
+    // loop through the positions of the highest number
+    // i will go from 1, 10, 100 ... till the largest possible value
+    for (int i = 1; max / i > 0; i *= 10)
+        countingSortExp(arr, size, i);
+
+}
+
+int main() {
+    int arr[] = {3, 20, 15, 12, 6, 9, 22, 13, 25, 26, 13, 13, 17, 16, 18, 7, 20, 10, 26, 28};
+    int size = sizeof(arr) / sizeof(int);
+    radixSort(arr, size);
     display(arr, size);
 
 }
