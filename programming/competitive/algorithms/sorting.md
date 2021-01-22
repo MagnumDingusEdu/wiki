@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T07:54:33.022Z
+date: 2021-01-22T08:38:41.518Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -327,6 +327,9 @@ int partition(E arr[], int start, int end) {
         while (arr[ending] > pivotValue)
             ending--;
 
+        // handle edge case, getting stuck in while loop when values same
+        if (arr[beginning] == arr[ending]) beginning++;
+
         // traversal complete
         if (beginning >= ending) break;
 
@@ -357,7 +360,7 @@ void quickSort(E *arr, int start, int end) {
 }
 
 int main() {
-    int arr[] = {4, 13, 30, 12, 17, 26, 5, 2, 13, 16, 19, 19, 25, 11, 9, 6, 3, 11, 15, 26};
+    int arr[] = {18, 15, 5, 1, 20, 25, 20, 5, 1, 18, 12, 13, 22, 3, 30, 19, 18, 13, 20, 22};
     int size = sizeof(arr) / sizeof(int);
     quickSort(arr, 0, size - 1);
     display(arr, size);
