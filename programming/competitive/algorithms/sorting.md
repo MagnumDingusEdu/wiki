@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T10:18:34.511Z
+date: 2021-01-22T10:18:51.053Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -925,7 +925,7 @@ if __name__ == '__main__':
 
     print(array)
 ```
-# Radix Sort
+## Radix Sort
 ```python
 from typing import List, Any
 
