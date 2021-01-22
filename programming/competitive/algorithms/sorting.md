@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T07:03:13.207Z
+date: 2021-01-22T07:17:08.833Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -607,4 +607,43 @@ int main() {
     display(arr, size);
 
 }
+```
+# Python
+## Bubble Sort
+```python
+import typing
+
+def bubble_sort(array: typing.List[int]):
+    # Get the size of the array
+    size: int = len(array)
+
+    iteration_count = 0
+    swapped_count = 0
+
+    for i in range(size):
+
+        swapped = False
+        iteration_count += 1
+
+        # Loop through the array, leaving i elements from the end
+        # as they are guaranteed to be sorted after each pass
+        for j in range(1, size - i):
+            if array[j] < array[j - 1]:
+                # swap elements if in incorrect order
+                array[j], array[j - 1] = array[j - 1], array[j]
+                swapped = True
+                swapped_count += 1
+
+        if not swapped:
+            break
+
+    # print(f"{swapped_count} swaps, {iteration_count} iterations")
+
+
+if __name__ == '__main__':
+    arr: typing.List[int] = [3, 20, 15, 12, 6, 9, 22, 13, 25, 26, 13, 13, 17, 16, 18, 7, 20, 10, 26, 28]
+    bubble_sort(arr)
+
+    print(arr)
+
 ```
