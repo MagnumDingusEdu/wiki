@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T04:00:58.944Z
+date: 2021-01-22T04:56:47.770Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -273,6 +273,93 @@ int main() {
     int arr[] = {4, 13, 30, 12, 17, 26, 5, 2, 13, 16, 19, 19, 25, 11, 9, 6, 3, 11, 15, 26};
     int size = sizeof(arr) / sizeof(int);
     shellSort(arr, size);
+    display(arr, size);
+
+}
+```
+
+## Quick Sort
+```cpp
+#include <bits/stdc++.h>
+
+#define DEBUG
+using namespace std;
+
+template<typename E>
+void display(E arr[], int size) {
+    stringstream ss;
+    ss << "[ ";
+    for (int i = 0; i < size; ++i) {
+        ss << arr[i] << " ";
+    }
+    ss << "]";
+    cout << ss.str() << endl;
+}
+
+// swap two values
+template<typename E>
+void swap(E *fp, E *sp) {
+    E temp = *sp;
+    *sp = *fp;
+    *fp = temp;
+}
+
+// partition the array into two sub-arrays, and return the pivot
+template<typename E>
+int partition(E arr[], int start, int end) {
+    // choose mid point as the pivot
+    int pivot = start + (end - start) / 2;
+
+    // store the value of pivot in a temp variable
+    E pivotValue = arr[pivot];
+
+    // place the pivot at the end to avoid conflict
+    swap(&arr[pivot], &arr[end]);
+
+    int beginning = start;
+    int ending = end - 1; // as the last element is the pivot
+
+    while (true) {
+
+        // ignore elements already at the correct positions
+        while (arr[beginning] < pivotValue)
+            beginning++;
+        while (arr[ending] > pivotValue)
+            ending--;
+
+        // traversal complete
+        if (beginning >= ending) break;
+
+        // swap elements if both are in the wrong position
+        // (pass both while conditions)
+        swap(&arr[beginning], &arr[ending]);
+    }
+
+    // re-swap the pivot back to it's correct place
+    swap(&arr[beginning], &arr[end]);
+    return beginning;
+}
+
+template<typename E>
+void quickSort(E *arr, int start, int end) {
+
+    // check if we have reached the end
+    if (start >= end) return;
+
+    // partition the array into two halves
+    // and place pivot into correct spot
+    int pivot = partition(arr, start, end);
+
+    // recursively sort the two remaining halves
+    quickSort(arr, start, pivot - 1);
+    quickSort(arr, pivot + 1, end);
+
+}
+
+int main() {
+    int arr[] = {4, 13, 30, 12, 17, 26, 5, 2, 13, 16, 19, 19, 25, 11, 9, 6, 3, 11, 15, 26};
+    int size = sizeof(arr) / sizeof(int);
+    quickSort(arr, 0, size - 1);
     display(arr, size);
 
 }
