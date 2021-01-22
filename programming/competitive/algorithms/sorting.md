@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T05:40:30.313Z
+date: 2021-01-22T06:37:25.104Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -433,6 +433,81 @@ int main() {
     int arr[] = {12, 11, 13, 5, 6, 7 };
     int size = sizeof(arr) / sizeof(int);
     mergeSort(arr, 0, size - 1);
+    display(arr, size);
+
+}
+```
+
+## Counting Sort
+```cpp
+#include <bits/stdc++.h>
+
+#define DEBUG
+using namespace std;
+
+template<typename E>
+void display(E arr[], int size) {
+    stringstream ss;
+    ss << "[ ";
+    for (int i = 0; i < size; ++i) {
+        ss << arr[i] << " ";
+    }
+    ss << "]";
+    cout << ss.str() << endl;
+}
+
+
+template<typename E>
+void countingSort(E arr[], int size) {
+    // edge case
+    if (size <= 0) return;
+
+    // find the min and max elements
+    int min = arr[0], max = arr[0];
+
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] < min) min = arr[i];
+        if (arr[i] > max) max = arr[i];
+    }
+
+    // calculate the range of values
+    int range = max - min + 1;
+
+    // allocate a frequency  array and initialize all entries to zero
+    auto frequency = new unsigned int[range]();
+
+    // loop through the original array and fill in the frequency values
+    for (int i = 0; i < size; ++i)
+        frequency[arr[i] - min]++;
+
+    // accumulate the counts
+    for (int i = 1; i < range; ++i)
+        frequency[i] += frequency[i - 1];
+
+
+    // allocate a temporary array for storing the sorted values
+    auto sorted = new E[size];
+
+    // fill the sorted array in reverse order
+    // based on the frequency values
+    for (int i = size - 1; i >= 0; --i)
+        sorted[--frequency[arr[i] - min]] = arr[i];
+
+
+    // copy the values over to the original array
+    for (int i = 0; i < size; ++i)
+        arr[i] = sorted[i];
+
+    // de-allocate the arrays
+    delete[] frequency;
+    delete[] sorted;
+}
+
+
+int main() {
+    int arr[] = {3, 20, 15, 12, 6, 9, 22, 13, 25, 26, 13, 13, 17, 16, 18, 7, 20, 10, 26, 28};
+    int size = sizeof(arr) / sizeof(int);
+    countingSort(arr, size);
     display(arr, size);
 
 }
