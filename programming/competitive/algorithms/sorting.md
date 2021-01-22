@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T07:43:56.446Z
+date: 2021-01-22T07:54:33.022Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -720,6 +720,45 @@ def insertion_sort(arr: List[Any]):
 if __name__ == '__main__':
     array: List[int] = [3, 20, 15, 12, 6, 9, 22, 13, 25, 26, 13, 13, 17, 16, 18, 7, 20, 10, 26, 28]
     insertion_sort(array)
+
+    print(array)
+```
+## Shell Sort
+```python
+from typing import List, Any
+
+
+def shell_sort(arr: List[Any]):
+    # Get the size of the array
+    size: int = len(arr)
+
+    pass_count: int = 0
+
+    # Initialize gap to half of size
+    gap: int = int(size / 2)
+
+    # Iterate through the array in "gap" number of passes
+    # half value of gap after each pass, stop when gap = 0
+    while True:
+        if gap <= 0: break
+        pass_count += 1
+
+        # Loop through gap separated sub-array, swap out of order elements
+        for i in range(gap, size):
+            current = i
+            while current - gap >= 0 and arr[current] < arr[current - gap]:
+                arr[current - gap], arr[current] = arr[current], arr[current - gap]
+                current -= gap
+
+        # Half the value of gap till it's 1
+        gap = int(gap / 2)
+
+    print(f"{pass_count} passes")
+
+
+if __name__ == '__main__':
+    array: List[int] = [3, 20, 15, 12, 6, 9, 22, 13, 25, 26, 13, 13, 17, 16, 18, 7, 20, 10, 26, 28]
+    shell_sort(array)
 
     print(array)
 ```
