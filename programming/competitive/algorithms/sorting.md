@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T04:56:47.770Z
+date: 2021-01-22T05:40:30.313Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -360,6 +360,79 @@ int main() {
     int arr[] = {4, 13, 30, 12, 17, 26, 5, 2, 13, 16, 19, 19, 25, 11, 9, 6, 3, 11, 15, 26};
     int size = sizeof(arr) / sizeof(int);
     quickSort(arr, 0, size - 1);
+    display(arr, size);
+
+}
+```
+## Merge Sort
+```cpp
+#include <bits/stdc++.h>
+
+#define DEBUG
+using namespace std;
+
+template<typename E>
+void display(E arr[], int size) {
+    stringstream ss;
+    ss << "[ ";
+    for (int i = 0; i < size; ++i) {
+        ss << arr[i] << " ";
+    }
+    ss << "]";
+    cout << ss.str() << endl;
+}
+
+template<typename E>
+void merge(E *arr, int start, int middle, int end) {
+
+    // size of the two sub-arrays
+    int sizeLeft = middle - start + 1;
+    int sizeRight = end - middle;
+
+    // allocate two temporary sub-arrays
+    auto arrLeft = new E[sizeLeft];
+    auto arrRight = new E[sizeRight];
+
+    // fill the temporary sub-arrays
+    for (int i = 0; i < sizeLeft; ++i)
+        arrLeft[i] = arr[start + i];
+    for (int i = 0; i < sizeRight; ++i)
+        arrRight[i] = arr[middle + i + 1];
+
+    // merge temporary arrays to real array
+    int lIndex = 0, rIndex = 0, mainIndex = start;
+    while (lIndex < sizeLeft && rIndex < sizeRight) {
+        if (arrLeft[lIndex] <= arrRight[rIndex]) arr[mainIndex++] = arrLeft[lIndex++];
+        else arr[mainIndex++] = arrRight[rIndex++];
+    }
+
+    // fill in remaining elements at the end
+    while (lIndex < sizeLeft) arr[mainIndex++] = arrLeft[lIndex++];
+    while (rIndex < sizeRight) arr[mainIndex++] = arrRight[rIndex++];
+}
+
+template<typename E>
+void mergeSort(E *arr, int start, int end) {
+    // check if array length is 1 or zero
+    // base case
+    if (start >= end) return;
+
+    // choose the mid point
+    int middle = start + (end - start) / 2;
+
+    // sort both halves of the arrays
+    mergeSort(arr, start, middle);
+    mergeSort(arr, middle + 1, end);
+
+    merge(arr, start, middle, end);
+
+
+}
+
+int main() {
+    int arr[] = {12, 11, 13, 5, 6, 7 };
+    int size = sizeof(arr) / sizeof(int);
+    mergeSort(arr, 0, size - 1);
     display(arr, size);
 
 }
