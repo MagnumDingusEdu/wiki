@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T07:17:08.833Z
+date: 2021-01-22T07:34:10.241Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -645,5 +645,41 @@ if __name__ == '__main__':
     bubble_sort(arr)
 
     print(arr)
+
+```
+
+## Selection Sort
+```python
+from typing import List, Any
+
+
+def selection_sort(arr: List[Any]):
+    # Get the size of the array
+    size: int = len(arr)
+
+    iteration_count: int = 0
+
+    # Loop through the array, ruling out the first value after each iteration
+    for i in range(size):
+        # find the minimum element
+        minimum: int = i
+        for j in range(i, size):
+            if arr[j] < arr[minimum]:
+                minimum = j
+
+        # put the minimum element at the start
+        arr[i], arr[minimum] = arr[minimum], arr[i]
+
+        # Increase the iteration count
+        iteration_count += 1
+
+    print(f"{iteration_count} iterations")
+
+
+if __name__ == '__main__':
+    array: List[int] = [3, 20, 15, 12, 6, 9, 22, 13, 25, 26, 13, 13, 17, 16, 18, 7, 20, 10, 26, 28]
+    selection_sort(array)
+
+    print(array)
 
 ```
