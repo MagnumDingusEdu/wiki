@@ -2,7 +2,7 @@
 title: Sorting Algorithms
 description: 
 published: true
-date: 2021-01-22T02:14:55.781Z
+date: 2021-01-22T02:26:43.215Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-22T02:14:55.781Z
@@ -74,6 +74,76 @@ void bubbleSort(E arr[], int size) {
 int main() {
     int arr[] = {1, 23, 12, 9, 30, 2, 50};
     bubbleSort(arr, 7);
+    display(arr, 7);
+}
+```
+
+## Selection Sort
+```cpp
+#include <bits/stdc++.h>
+
+#define DEBUG
+using namespace std;
+
+// swap two values
+template<typename E>
+void swap(E *fp, E *sp) {
+    E temp = *sp;
+    *sp = *fp;
+    *fp = temp;
+}
+
+template<typename E>
+void display(E arr[], int size) {
+    stringstream ss;
+    ss << "[ ";
+    for (int i = 0; i < size; ++i) {
+        ss << arr[i] << " ";
+    }
+    ss << "]";
+    cout << ss.str() << endl;
+}
+
+template<typename E>
+void selectionSort(E arr[], int size) {
+
+    int min_id;
+    int totalSwaps = 0;
+
+    // move the starting boundary of the unsorted subarray on every iteration
+    // no use trying to sort the last element alone, so leave one out
+    for (int i = 0; i < size - 1; ++i) {
+
+        // find minimum element in unsorted subarray
+        min_id = i;
+        for (int j = i + 1; j < size; ++j) {
+            if (arr[j] < arr[min_id]) min_id = j;
+        }
+
+        // swap the minimum element with the start
+        // of the unsorted subarray
+        if (arr[i] != arr[min_id]) {
+            swap(arr + i, arr + min_id);
+            totalSwaps++;
+        }
+
+        // debugging information
+#ifdef DEBUG
+        cout << "Iteration #" << i + 1 << endl;
+        display(arr, size);
+#endif
+
+    }
+
+#ifdef DEBUG
+    cout << "Total Swaps : " << totalSwaps << endl;
+#endif
+
+}
+
+int main() {
+    int arr[] = {1, 23, 12, 9, 30, 2, 50};
+    selectionSort(arr, 7);
     display(arr, 7);
 }
 ```
