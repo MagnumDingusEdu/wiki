@@ -1,13 +1,15 @@
 ---
 title: 2 Jugs Problem
-description: Given two jugs : a 4 liter and 3 liter capacity. Neither has any measurable markers on it. There is a pump which can be used to fill the jugs with water. Simulate the procedure to get exactly 2 liter of water into 4-liter jug.
+description: 
 published: true
-date: 2021-04-16T14:46:05.021Z
+date: 2021-04-16T14:46:52.312Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-16T14:46:05.021Z
 ---
 
+# Question :
+Given two jugs : A 4 liter and 3 liter capacity. Neither has any measurable markers on it. There is a pump which can be used to fill the jugs with water. Simulate the procedure to get exactly 2 liters of water into 4-liter jug.
 ```python
 # !/usr/bin/env python
 #######################################################################
