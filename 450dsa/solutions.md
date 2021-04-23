@@ -2,7 +2,7 @@
 title: 450 DSA Solutions
 description: 
 published: true
-date: 2021-04-23T14:45:47.129Z
+date: 2021-04-23T14:48:19.035Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-23T14:45:47.129Z
@@ -44,4 +44,26 @@ if __name__ == '__main__':
     arr = [1, 2, 3, 4, 5, 6, 7]
     arr = iterative_reverse(arr)
     print(arr)
+```
+
+# Find minimum / maximum in array
+```python
+from typing import List
+
+if __name__ == '__main__':
+    arr: List[int] = [1, 2, 3, 4, 5, 6, 7]
+
+    minimum, maximum = arr[0], arr[0]
+
+    for val in arr:
+        if val < minimum:
+            minimum = val
+        if val > maximum:
+            maximum = val
+
+    # Python specific
+    minimum = min(arr)
+    maximum = max(arr)
+
+    print(minimum, maximum)
 ```
