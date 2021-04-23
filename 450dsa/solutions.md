@@ -2,7 +2,7 @@
 title: 450 DSA Solutions
 description: 
 published: true
-date: 2021-04-23T14:51:31.286Z
+date: 2021-04-23T14:51:51.561Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-23T14:45:47.129Z
@@ -54,7 +54,8 @@ if __name__ == '__main__':
     arr: List[int] = [1, 2, 3, 4, 5, 6, 7]
 
     minimum, maximum = arr[0], arr[0]
-
+		
+    # O(n)
     for val in arr:
         if val < minimum:
             minimum = val
