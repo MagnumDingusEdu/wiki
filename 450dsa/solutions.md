@@ -2,7 +2,7 @@
 title: 450 DSA Solutions
 description: 
 published: true
-date: 2021-04-23T14:48:19.035Z
+date: 2021-04-23T14:51:31.286Z
 tags: 
 editor: markdown
 dateCreated: 2021-04-23T14:45:47.129Z
@@ -12,7 +12,7 @@ dateCreated: 2021-04-23T14:45:47.129Z
 ```python
 from typing import List
 
-
+# O(n)
 def iterative_reverse(a: List[int]) -> List[int]:
     for i in range(len(a) // 2):
         start_index, end_index = i, len(a) - 1 - i
@@ -22,7 +22,7 @@ def iterative_reverse(a: List[int]) -> List[int]:
 
     return a
 
-
+# O(n)
 def recursive_reverse(a: List[int]) -> List[int]:
     # if array is empty (base case)
     if not a:
@@ -33,7 +33,7 @@ def recursive_reverse(a: List[int]) -> List[int]:
 
     return reversed_array + [first_element]
 
-
+# O(n)
 # Python specific
 def direct_reverse(a: List[int]) -> List[int]:
     return a[::-1]
