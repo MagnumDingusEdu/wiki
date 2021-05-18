@@ -2,7 +2,7 @@
 title: Cycle Detection
 description: 
 published: true
-date: 2021-05-18T17:52:08.842Z
+date: 2021-05-18T17:53:04.525Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-18T17:52:08.842Z
@@ -70,3 +70,5 @@ if __name__ == '__main__':
     a = find_duplicate(arr)
     print(a)
 ```
+> References: https://leetcode.com/problems/find-the-duplicate-number/solution/
+{.is-info}
