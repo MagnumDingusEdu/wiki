@@ -2,7 +2,7 @@
 title: Split -/+ parts
 description: 
 published: true
-date: 2021-05-18T13:05:05.510Z
+date: 2021-05-18T13:05:31.831Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-18T13:05:05.510Z
@@ -62,3 +62,6 @@ if __name__ == '__main__':
     two_pointer_split(arr)
     print(arr)
 ```
+
+> References: https://www.geeksforgeeks.org/rearrange-positive-and-negative-numbers/
+{.is-info}
