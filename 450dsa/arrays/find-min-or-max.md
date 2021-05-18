@@ -2,7 +2,7 @@
 title: Find the Min / Max Element
 description: 
 published: true
-date: 2021-05-18T05:39:38.703Z
+date: 2021-05-18T11:38:29.595Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-18T05:39:22.464Z
