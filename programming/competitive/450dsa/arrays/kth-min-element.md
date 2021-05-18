@@ -2,7 +2,7 @@
 title: K’th Min / Max Elem
 description: 
 published: true
-date: 2021-05-18T12:39:38.159Z
+date: 2021-05-18T12:40:37.300Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-18T12:39:38.159Z
@@ -241,3 +241,7 @@ if __name__ == "__main__":
     print(find_kth_sort(arr, 200), find_kth_heap(arr2, 200), find_kth_quick_select(arr, 200))
 
 ```
+> References : 
+https://practice.geeksforgeeks.org/problems/kth-smallest-element5635/1
+https://afteracademy.com/blog/kth-smallest-element-in-an-array
+{.is-info}
