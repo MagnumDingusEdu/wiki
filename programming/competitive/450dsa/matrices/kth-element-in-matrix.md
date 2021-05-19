@@ -2,7 +2,7 @@
 title: Kth Element in Mat
 description: 
 published: true
-date: 2021-05-19T07:30:11.270Z
+date: 2021-05-19T16:09:30.003Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-19T07:30:11.270Z
@@ -34,6 +34,45 @@ Expected Auxiliary Space: `O(N)`
 
 ## Solution
 ```python
+from heapq import *
+from typing import List
+
+
+# Kth smallest element in matrix
+# Uses a min heap
+# Matrix size : mxn
+# Time complexity : O(k*log(cols)) + O(cols)
+# in short :  O(n+k*log(n))
+# Space complexity : O(n)
+
+def kth_smallest_element_matrix(mat: List[List[int]], k: int):
+    heap = []
+    for i, elem in enumerate(mat[0]):
+        # Push each element of the first row on to the heap with
+        # it's row and column index
+        heappush(heap, (elem, 0, i))
+
+    for i in range(k - 1):
+        elem = heappop(heap)
+        i = elem[1]
+        j = elem[2]
+
+        # Push the next element of that column to the heap
+        if i + 1 < len(mat):
+            heappush(heap, (mat[i + 1][j], i + 1, j))
+
+    return heappop(heap)[0]
+
+
+if __name__ == '__main__':
+    ...
+    arr = [[10, 20, 30, 40],
+           [15, 25, 35, 45],
+           [25, 29, 37, 48],
+           [32, 33, 39, 50]]
+    ans = kth_smallest_element_matrix(arr, 7)
+    print(ans)
+
 ```
 > References: https://practice.geeksforgeeks.org/problems/kth-element-in-matrix/1
 {.is-info}
