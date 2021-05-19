@@ -2,7 +2,7 @@
 title: Max Ones in row
 description: 
 published: true
-date: 2021-05-19T11:54:21.215Z
+date: 2021-05-19T11:54:48.430Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-19T06:54:26.258Z
@@ -41,6 +41,10 @@ Expected Auxiliary Space: O(1)
 ```
 
 ## Solution
+> The GFG page doesn't actually use sorted test cases so the optimized solution will fail. 
+The brute force one works just fine.
+{.is-danger}
+
 ```python
 from typing import List
 from bisect import bisect_left
@@ -123,9 +127,7 @@ if __name__ == '__main__':
     print(ans)
 
 ```
-> The GFG page doesn't actually use sorted test cases so the optimized solution will fail. 
-The brute force one works just fine.
-{.is-danger}
+
 
 > References: https://practice.geeksforgeeks.org/problems/row-with-max-1s0023/1
 [.is-info]
