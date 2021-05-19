@@ -2,7 +2,7 @@
 title: Max Rectangle Size
 description: 
 published: true
-date: 2021-05-19T07:21:50.653Z
+date: 2021-05-19T14:04:29.452Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-19T07:21:01.724Z
@@ -41,5 +41,9 @@ Expected Auixiliary Space : `O(m)`
 ```python
 ```
 
-> References: https://practice.geeksforgeeks.org/problems/max-rectangle/1
+> References: 
+[Largest Rectangle in histogram animation](/largest_rect_histogram.mp4)
+[Explanation of the histogram method](https://youtu.be/vcv3REtIvEo)
+[How to use the histogram method in matrix](https://youtu.be/dAVF2NpC3j4)
+https://practice.geeksforgeeks.org/problems/max-rectangle/1
 {.is-info}
