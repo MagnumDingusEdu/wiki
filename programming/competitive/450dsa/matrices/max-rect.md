@@ -2,7 +2,7 @@
 title: Max Rectangle Size
 description: 
 published: true
-date: 2021-05-19T07:21:01.724Z
+date: 2021-05-19T07:21:50.653Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-19T07:21:01.724Z
@@ -15,10 +15,10 @@ Given a binary matrix. Find the maximum area of a rectangle formed only of 1s in
 ```cpp
 Input:
 n = 4, m = 4
-M[][] = {{0 1 1 0},
-         {1 1 1 1},
-         {1 1 1 1},
-         {1 1 0 0}}
+M[][] = [[0 1 1 0],
+         [1 1 1 1],
+         [1 1 1 1],
+         [1 1 0 0]]
          
 Output: 8
 
