@@ -2,7 +2,7 @@
 title: Rotate matrix 90°
 description: 
 published: true
-date: 2021-05-19T15:39:34.463Z
+date: 2021-05-19T15:39:50.515Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-19T07:27:25.091Z
@@ -83,5 +83,7 @@ if __name__ == '__main__':
     rotate_using_loops(arr)
 
 ```
-> References: https://www.geeksforgeeks.org/rotate-a-matrix-by-90-degree-in-clockwise-direction-without-using-any-extra-space/
+> References: 
+https://youtu.be/IdZlsG6P17w
+https://www.geeksforgeeks.org/rotate-a-matrix-by-90-degree-in-clockwise-direction-without-using-any-extra-space/
 {.is-info}
