@@ -2,7 +2,7 @@
 title: Sort Matrix
 description: 
 published: true
-date: 2021-05-19T07:18:15.021Z
+date: 2021-05-19T12:20:30.446Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-19T07:18:15.021Z
@@ -36,7 +36,47 @@ Expected Auxillary Space: `O(N^2)`
 ```
 
 ## Solution
+> Solution with O(1) space complexity missing
+{.is-warning}
+
 ```python
+from typing import List
+from bisect import bisect_left
+
+
+# Sort matrix
+# copy matrix into array, sort array, copy back
+# Time complexity : O(m*n*log(m*n))
+def sort_mat(mat: List[List[int]]):
+    arr = []
+
+    for row in mat:
+        for elem in row:
+            arr.append(elem)
+
+    arr.sort()
+
+    current_index = 0
+
+    for i, row in enumerate(mat):
+        for j, _ in enumerate(row):
+            mat[i][j] = arr[current_index]
+            current_index += 1
+
+
+if __name__ == '__main__':
+    arr = [[0, 0, 0, 0, 1, 1, 1, 1, 1],
+           [0, 0, 0, 0, 1, 1, 1, 1, 1],
+           [0, 0, 1, 1, 1, 1, 1, 1, 1],
+           [0, 0, 1, 1, 1, 1, 1, 1, 1],
+           [0, 0, 0, 0, 0, 0, 0, 1, 1],
+           [0, 1, 1, 1, 1, 1, 1, 1, 1],
+           [0, 0, 0, 0, 0, 0, 1, 1, 1],
+           [0, 0, 0, 1, 1, 1, 1, 1, 1]]
+
+    sort_mat(arr)
+    print(arr)
+
 ```
 > References: https://practice.geeksforgeeks.org/problems/sorted-matrix2333/1
 {.is-info}
