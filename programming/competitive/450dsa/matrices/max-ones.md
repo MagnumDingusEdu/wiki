@@ -2,7 +2,7 @@
 title: Row with max 1s
 description: 
 published: true
-date: 2021-05-19T06:52:06.951Z
+date: 2021-05-19T06:53:34.280Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-19T06:52:06.951Z
