@@ -2,7 +2,7 @@
 title: Longest Palindrome
 description: 
 published: true
-date: 2021-05-20T16:47:04.378Z
+date: 2021-05-20T16:47:51.481Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-20T13:35:13.900Z
@@ -35,11 +35,11 @@ Output: a
 * `Expected Auxiliary Space: O(1).`
 * `1 ≤ |S| ≤ 10^3`
 
-## Solution
+# Solution
 > Python solution was going overtime, while the C++ solution was well within time
 (for the DP based solution)
 {.is-warning}
-### C++ (Dynamic Programming)
+## C++ (Dynamic Programming)
 ```cpp
 #include <iostream>
 #include <bits/stdc++.h>
@@ -189,7 +189,7 @@ int main() {
     cout << longest_palindrome_iterative("rfkqyuqfjkxy");
 }
 ```
-### Python (Dynamic Programming)
+## Python (Dynamic Programming)
 ```python
 def longest_palindrome(s: str) -> str:
     n = len(s)
