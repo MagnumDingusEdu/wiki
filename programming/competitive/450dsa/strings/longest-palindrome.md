@@ -2,7 +2,7 @@
 title: Longest Palindrome
 description: 
 published: true
-date: 2021-05-20T16:20:58.429Z
+date: 2021-05-20T16:47:04.378Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-20T13:35:13.900Z
@@ -39,7 +39,7 @@ Output: a
 > Python solution was going overtime, while the C++ solution was well within time
 (for the DP based solution)
 {.is-warning}
-### C++
+### C++ (Dynamic Programming)
 ```cpp
 #include <iostream>
 #include <bits/stdc++.h>
@@ -113,7 +113,83 @@ int main() {
     cout << longest_palindrome("abcd");
 }
 ```
-### Python
+
+## C++ (Iterative)
+```cpp
+#include <iostream>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Iterative solution
+// Space complexity : O(1)
+// Time complexity : O(n^2)
+string longest_palindrome_iterative(string s) {
+    int n = s.length();
+    string longest_so_far;
+    int max_length = 0;
+
+    int start_index, end_index;
+
+//  Check for odd centres
+    for (int i = 0; i < n; ++i) {
+        start_index = i;
+        end_index = i;
+        int current_length = 1;
+        // Expand outward from each centre while both ends are equal
+        while (true) {
+            if (start_index - 1 >= 0 && end_index + 1 < n && s[start_index - 1] == s[end_index + 1]) {
+                start_index--;
+                end_index++;
+                current_length += 2;
+
+            } else {
+                break;
+            }
+        }
+        // check to see if we have exceeded current max
+        if (current_length > max_length) {
+            max_length = current_length;
+            longest_so_far = s.substr(start_index, end_index - start_index + 1);
+        }
+    }
+
+//  Check for even centres
+    for (int i = 1; i < n; ++i) {
+        start_index = i - 1;
+        end_index = i;
+
+        // check if the two centres are equal
+        if (s[start_index] == s[end_index]) {
+            int current_length = 0;
+            // Expand outward from each centre while both ends are equal
+            while (true) {
+                current_length += 2;
+                if (start_index - 1 >= 0 && end_index + 1 < n &&
+                    s[start_index - 1] == s[end_index + 1]) {
+                    start_index--;
+                    end_index++;
+                } else {
+                    break;
+                }
+            }
+            // check to see if we have exceeded current max
+            if (current_length > max_length) {
+                max_length = current_length;
+                longest_so_far = s.substr(start_index, end_index - start_index + 1);
+            }
+        } else {
+            // ignore
+        }
+    }
+    return longest_so_far;
+}
+
+int main() {
+    cout << longest_palindrome_iterative("rfkqyuqfjkxy");
+}
+```
+### Python (Dynamic Programming)
 ```python
 def longest_palindrome(s: str) -> str:
     n = len(s)
