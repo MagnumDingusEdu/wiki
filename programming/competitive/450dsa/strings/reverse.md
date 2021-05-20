@@ -2,7 +2,7 @@
 title: Reverse String
 description: 
 published: true
-date: 2021-05-20T13:13:37.750Z
+date: 2021-05-20T13:14:19.976Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-20T13:13:37.750Z
@@ -25,6 +25,8 @@ Output: ["h","a","n","n","a","H"]
 ## Constraints
 * `1 <= s.length <= 105`
 * `s[i] is a printable ascii character`
+* `Space complexity : O(1)`
+* `Time complexity: O(n)`
 
 ## Solution
 ```python
