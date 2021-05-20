@@ -2,7 +2,7 @@
 title: Check if rotated
 description: 
 published: true
-date: 2021-05-20T13:24:25.840Z
+date: 2021-05-20T14:29:58.369Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-20T13:24:25.840Z
@@ -28,6 +28,14 @@ OUTPUT: False
 
 ## Solution
 ```python
+# Check rotation
+def check_if_strings_are_rotated(s1: str, s2: str):
+    return s2 in s1 + s1 and s1 in s2 + s2
+
+
+if __name__ == '__main__':
+    print(check_if_strings_are_rotated("abcd", "bcda"))
+
 ```
 
 > References: https://www.geeksforgeeks.org/a-program-to-check-if-strings-are-rotations-of-each-other/
