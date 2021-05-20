@@ -2,7 +2,7 @@
 title: Longest Palindrome
 description: 
 published: true
-date: 2021-05-20T13:35:13.900Z
+date: 2021-05-20T15:26:31.088Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-20T13:35:13.900Z
@@ -31,12 +31,15 @@ Output: a
 ```
 
 ## Constraints
-* `Expected Time Complexity: O(|S|2).`
+* `Expected Time Complexity: O(|S|^2).`
 * `Expected Auxiliary Space: O(1).`
-* `1 ≤ |S| ≤ 103`
+* `1 ≤ |S| ≤ 10^3`
 
 ## Solution
 ```python
+
 ```
-> References: https://practice.geeksforgeeks.org/problems/longest-palindrome-in-a-string3411/1
+> References: 
+https://youtu.be/UflHuQj6MVA
+https://practice.geeksforgeeks.org/problems/longest-palindrome-in-a-string3411/1
 {.is-info}
