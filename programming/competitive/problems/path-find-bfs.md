@@ -2,7 +2,7 @@
 title: Find Path in Maze
 description: 
 published: true
-date: 2021-05-26T16:29:27.698Z
+date: 2021-05-26T17:08:01.758Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-26T16:29:27.698Z
@@ -375,17 +375,12 @@ use std::thread::sleep;
 use std::time::Duration;
 use std::collections::{VecDeque, HashMap};
 
-#[allow(unused_macros)]
-macro_rules! read_vec {
-    ($out:ident as $type:ty) => {
-        let mut temp_input = String::new();
-        io::stdin().read_line(&mut temp_input).unwrap();
-        let $out = temp_input
-            .trim()
-            .split_whitespace()
-            .map(|s| s.parse::<$type>().unwrap())
-            .collect::<Vec<$type>>();
-    };
+
+fn read_input_vec() -> Vec<u32> {
+    let mut line = String::new();
+    std::io::stdin().read_line(&mut line).expect("input");
+    let nums = line.trim().split(' ').flat_map(str::parse::<u32>).collect::<Vec<_>>();
+    nums
 }
 
 
@@ -421,14 +416,14 @@ fn bfs(mat: Vec<Vec<u32>>, head: u32) -> Vec<Vec<u32>> {
 }
 
 fn print_vec(arg: &Vec<u32>) {
-    for node in arg{
+    for node in arg {
         print!("{} ", node);
     }
     println!()
 }
 
 fn main() {
-    read_vec!(inp as u32);
+    let inp = read_input_vec();
 
     let (m, n, start_index) = (inp[0], inp[1], inp[2]);
 
@@ -438,7 +433,7 @@ fn main() {
     }
 
     for _ in 1..(m * n + 1) {
-        read_vec!(inp as u32);
+        let inp = read_input_vec();
         let index = inp[0];
         if inp[1 as usize] == 1 {
             let child_index = index - n;
@@ -518,6 +513,8 @@ fn main() {
     }
     sleep(Duration::from_millis(1));
 }
+
+
 
 ```
 
