@@ -2,7 +2,7 @@
 title: Reading input from STDIN
 description: 
 published: true
-date: 2021-05-30T20:58:18.461Z
+date: 2021-05-30T21:02:20.901Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-08T03:42:07.846Z
@@ -59,7 +59,7 @@ fn main(){
 ```rust
 use std::io;
 
-
+#[allow(dead_code)]
 fn read_string() -> String {
     let mut input_string = String::new();
     io
@@ -69,17 +69,18 @@ fn read_string() -> String {
     return input_string.trim().to_string();
 }
 
+#[allow(dead_code)]
 fn read_int() -> i32 {
-    let mut input_string = read_string();
-    let mut output: i32;
+    let input_string = read_string();
+    let output: i32;
     output = input_string
         .trim()
         .parse::<i32>().unwrap();
     return output;
 }
-
+#[allow(dead_code)]
 fn read_vec() -> Vec<i32> {
-    let mut input_string = read_string();
+    let input_string = read_string();
     let output = input_string
         .trim()
         .split_whitespace()
@@ -87,4 +88,5 @@ fn read_vec() -> Vec<i32> {
         .collect::<Vec<i32>>();
     return output;
 }
+
 ```
