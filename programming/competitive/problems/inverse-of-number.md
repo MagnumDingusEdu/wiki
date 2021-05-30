@@ -2,7 +2,7 @@
 title: Inverse of a number
 description: 
 published: true
-date: 2021-05-30T15:52:46.925Z
+date: 2021-05-30T15:53:02.921Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-30T15:52:46.925Z
@@ -28,7 +28,7 @@ Input : 28346751
 Output : 73425681
 ```
 
-## Solution
+# Solution
 ```java
 import java.util.*;
 
