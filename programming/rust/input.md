@@ -2,7 +2,7 @@
 title: Reading input from STDIN
 description: 
 published: true
-date: 2021-01-08T03:42:07.846Z
+date: 2021-05-30T20:58:18.461Z
 tags: 
 editor: markdown
 dateCreated: 2021-01-08T03:42:07.846Z
@@ -53,4 +53,38 @@ fn main(){
     println!("{:?}", v);
 }
 
+```
+
+# Function based STDIN Input
+```rust
+use std::io;
+
+
+fn read_string() -> String {
+    let mut input_string = String::new();
+    io
+    ::stdin()
+        .read_line(&mut input_string)
+        .unwrap();
+    return input_string.trim().to_string();
+}
+
+fn read_int() -> i32 {
+    let mut input_string = read_string();
+    let mut output: i32;
+    output = input_string
+        .trim()
+        .parse::<i32>().unwrap();
+    return output;
+}
+
+fn read_vec() -> Vec<i32> {
+    let mut input_string = read_string();
+    let output = input_string
+        .trim()
+        .split_whitespace()
+        .map(|s| s.parse::<i32>().unwrap())
+        .collect::<Vec<i32>>();
+    return output;
+}
 ```
