@@ -1,14 +1,14 @@
 ---
-title: Check if prime
+title: Prime Numbers
 description: 
 published: true
-date: 2021-05-30T14:13:39.576Z
+date: 2021-05-30T14:32:02.812Z
 tags: 
 editor: markdown
 dateCreated: 2021-05-30T14:13:39.576Z
 ---
 
-# Check whether a given number is prime
+# Check if prime / Count number of prime numbers
 ## Cpp
 ```cpp
 #include <bits/stdc++.h>
@@ -50,8 +50,10 @@ bool checkPrimeOptimized(int n) {
         return false;
     }
 
-    int rootN = ceil(sqrt(n));
-    for (int i = 2; i < rootN; ++i) {
+    // sqrt is expensive, directly use i*i instead
+    //    int rootN = ceil(sqrt(n));
+
+    for (int i = 2; i * i <= n; ++i) {
         if (n % i == 0) {
             return false;
         }
@@ -60,17 +62,53 @@ bool checkPrimeOptimized(int n) {
     return true;
 }
 
-int main() {
-    int t;
+// brute force method
+int countPrimes(int n) {
+    int counter = 0;
+    for (int i = 2; i < n; ++i) {
+        if (checkPrimeOptimized(i)) {
+            counter++;
+        }
+    }
+    return counter;
+}
 
-    cin >> t;
+//  Sieve of Eratosthenes
+int countPrimesOptimized(int n) {
 
-    while (t--) {
-        int n;
-        cin >> n;
-        cout << (checkPrimeOptimized(n) ? "prime" : "not prime") << endl;
+    // populate table with by default prime
+    auto primeArray = new bool[n + 1];
+    for (int i = 0; i < n + 1; ++i) {
+        primeArray[i] = true;
     }
 
+    // go through the numbers between 2 and √n
+    // mark off all multiples from p^2 to n as non-prime
+    for (int i = 2; i * i <= n; ++i) {
+        // if already marked as non-prime, all multiples will be marked already
+        if (!primeArray[i])
+            continue;
+
+        // mark off all multiples as non-prime
+        for (int j = i * i; j < n; j += i) {
+            primeArray[j] = false;
+        }
+
+    }
+
+    //  Sieve of Eratosthenes complete
+    // count number of primes less than n
+    int counter = 0;
+    for (int i = 2; i < n; ++i) {
+        if (primeArray[i])
+            counter++;
+    }
+    return counter;
+
+}
+
+int main() {
+    cout << countPrimesOptimized(5000000) << endl;
     return 0;
 }
 ```
