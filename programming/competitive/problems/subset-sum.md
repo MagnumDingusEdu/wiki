@@ -1,14 +1,14 @@
 ---
-title: Subset Sum Problem
+title: Subset Sum Existance
 description: 
 published: true
-date: 2021-07-14T22:17:10.483Z
+date: 2021-07-14T23:22:30.267Z
 tags: dynamic programming, knapsack
 editor: markdown
 dateCreated: 2021-06-03T02:38:11.615Z
 ---
 
-# Subset Sum Problem
+# Check if there is a Subset with target sum 
 
 
 ## Iterative DP Solution 
