@@ -2,7 +2,7 @@
 title: Subset Sum Problem
 description: 
 published: true
-date: 2021-06-03T02:38:11.615Z
+date: 2021-07-14T22:17:10.483Z
 tags: dynamic programming, knapsack
 editor: markdown
 dateCreated: 2021-06-03T02:38:11.615Z
@@ -64,125 +64,72 @@ if __name__ == "__main__":
     print(ans)
 ```
 
-> CPP Solution is giving segfaults (unresolved)
-{.is-warning}
+
 
 ```cpp
 #include <bits/stdc++.h>
-
 using namespace std;
 
+#define ar array
+#define ll long long
 
+const int MAX_N = 1e5 + 1;
+const ll MOD = 1e9 + 7;
+const ll INF = 1e9;
 
+class Solution {
+public:
+  bool isSubsetSum(int N, int arr[], int sum) {
+    auto dp = new bool *[N + 1];
+    for (int i = 0; i <= N; i++) {
+      dp[i] = new bool[sum + 1];
+      for (int j = 0; j <= sum; j++) {
+        dp[i][j] = false;
+      }
+    }
 
+    // init dp
+    for (int i = 0; i <= N; i++) {
+      // if sum is zero, return true as always possible
+      dp[i][0] = true;
+    }
+    for (int i = 1; i <= sum; i++) {
+      // if elements are 0, only possible if sum is 0, else false
+      dp[0][i] = false;
+    }
 
-void print_2d_array(bool** arr, int m, int n){
-	for (int i = 0; i < m; ++i)
-	{
-		for (int j = 0; j < n; ++j)
-		{
-			cout << arr[i][j] << " ";
-		}
-		cout << endl;
-	}
-}
+    for (int i = 1; i <= N; i++) {
+      for (int j = 1; j <= sum; j++) {
+        // check if current element can be included
+        if (arr[i - 1] <= j) {
+          // check if answer is true by both including and not including
+          dp[i][j] = dp[i - 1][j] || dp[i - 1][j - arr[i - 1]];
+        } else {
+          dp[i][j] = dp[i - 1][j];
+        }
+      }
+    }
 
+    bool answer = dp[N][sum];
+    // free up memory
+    for (int i = 0; i <= N; i++) {
+      delete[] dp[i];
+    }
+    delete[] dp;
 
-bool check_subset(int n, int arr[], int sum){
-	// base case
-	if (n == 0 && sum == 0)
-		return true;
+    // return answer
+    return answer;
+  }
+};
 
-	// create a dp array
-	auto dp = new bool*[n + 1];
-	for (int i = 0; i <= n; ++i)
-	{
-		dp[i] = new bool[sum];
-	}
+int32_t main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  auto a = Solution();
+  int arr[6] = {3, 34, 4, 12, 5, 2};
 
-
-	// if array is empty, answer will be false, except for 0/0
-	for (int i = 1; i<= sum; ++i)
-	{
-		dp[0][i] = false;
-	}
-
-	// if required sum (column) is 0, answer is true always
-	for (int i = 0; i <= n; ++i)
-	{
-		dp[i][0] = true;
-	}
-
-	for (int i = 1; i <= n; ++i)
-	{
-		for (int j = 1; j <= sum; ++j)
-		{
-			bool excluded = dp[i - 1][j];
-
-			// required sum is more than last value
-			if (arr[i - 1] <= j)
-			{
-				dp[i][j] = excluded || dp[i-1][j-arr[i-1]];
-			}else {
-				 dp[i][j] =  excluded;
-			}
-
-		}
-	}
-
-
-	#ifndef ONLINE_JUDGE
-
-	print_2d_array(dp, n+1, sum+1);
-	#endif
-
-	return dp[n][sum];
-
-	
-
-
-
-
-
-
-	// free up memory
-
-	for (int i = 0; i <= n; ++i)
-	{
-		delete [] dp[i];
-	}
-
-	delete [] dp;
-
-	return false;
-	
-}
-
-
-int32_t main(){
-	#ifndef ONLINE_JUDGE
-		freopen("input.txt", "r", stdin);
-		freopen("output.txt", "w", stdout);
-	#endif
-
-	
-	int n, sum;
-
-	cin >> n;
-
-	int arr[n];
-
-	for (int i = 0; i < n; ++i)
-	{
-		cin >> arr[i];
-	}
-
-	cin >> sum;
-
-	auto ans = check_subset(n, arr, sum);
-
-	cout << ans << endl;
-
+  auto ans = a.isSubsetSum(6, arr, 9);
+  cout << ans << endl;
 }
 ```
 
